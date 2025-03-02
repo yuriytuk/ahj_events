@@ -6,16 +6,19 @@ export default class Game {
     this.victory = 0;
     this.exit = 0;
     this.timeId = timeId;
+    globalThis.globalFail = false;
   }
     
-  handler() {
-    this.elem = this.classList.contains("hole_has-mole");
+  handler(event) {
+    this.elem = event.target.classList.contains("hole_has-mole");
+    globalFail = true;
     if (this.elem) {
       this.victory = this.victory + 1;
       this.gameDead.textContent = this.victory;
-      if (victory === 10) {
-        clearInterval(timeId);
+      if (this.victory === 10) {
+        clearInterval(this.timeId);
         alert("Вы победили!");
+        this.elem.classList.remove('hole_has-mole');
         this.victory = 0;
         this.exit = 0;
         this.gameDead.textContent = 0;

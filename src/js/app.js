@@ -13,13 +13,13 @@ button.addEventListener("click", handler1);
 
 function handler1() {
     time();
-    timeId = setInterval(goblin.numbers_cells, 1000);
+    timeId = setInterval(() => goblin.numbers_cells(timeId), 1000);
     game.timeId = timeId;
     goblin.timeId = timeId;
 }
 
 function time() {
     for (i; i < holeGame.length; i++) {
-        holeGame[i].addEventListener("click", game.handler);
+        holeGame[i].addEventListener("click", game.handler.bind(game));
     }
 }
